@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.maxima.springboottest.ProjectSpringBoot1.models.Person;
+import ru.maxima.springboottest.ProjectSpringBoot1.services.AdminService;
 import ru.maxima.springboottest.ProjectSpringBoot1.services.RegistrationService;
 import ru.maxima.springboottest.ProjectSpringBoot1.validate.PersonValidator;
 
@@ -18,11 +19,13 @@ public class AuthController {
 
     private final RegistrationService service;
     private final PersonValidator validator;
+    private final AdminService adminService;
 
     @Autowired
-    public AuthController(RegistrationService service, PersonValidator validator) {
+    public AuthController(RegistrationService service, PersonValidator validator, AdminService adminService) {
         this.service = service;
         this.validator = validator;
+        this.adminService = adminService;
     }
 
 
@@ -46,6 +49,7 @@ public class AuthController {
 
     @GetMapping("/admin")
     public String adminPage() {
+        adminService.doAdminThings();
         return "auth/admin";
     }
 
@@ -53,4 +57,5 @@ public class AuthController {
     public String logOutPage() {
         return "logout";
     }
+
 }

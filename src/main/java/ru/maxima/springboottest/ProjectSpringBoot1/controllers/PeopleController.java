@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.maxima.springboottest.ProjectSpringBoot1.models.Person;
 import ru.maxima.springboottest.ProjectSpringBoot1.services.PeopleService;
 
-
-/**
- * @author Neil Alishev
- */
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
@@ -49,6 +45,7 @@ public class PeopleController {
             return "people/new";
 
         peopleService.save(person);
+
         return "redirect:/people";
     }
 
