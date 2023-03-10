@@ -4,7 +4,10 @@ package ru.maxima.springboottest.ProjectSpringBoot1.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "person")
@@ -30,13 +33,20 @@ public class Person {
     @Column(name = "role")
     private String role;
 
-//    @Column(name = "email")
-//    @NotEmpty(message = "Email should not to be empty")
-//    @Email(message = "Email should be valid")
-//    private String email;
-//
-//    @Column(name = "is_admin")
-//    private boolean isAdmin;
+    @Column(name = "email")
+    @NotEmpty(message = "Email should not to be empty")
+    @Email(message = "Email should be valid")
+    private String email;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "created_person")
+    private String createdPerson;
+
+    @Column(name = "removed")
+    private Boolean removed;
+
 
     public Person() {
     }
@@ -55,13 +65,13 @@ public class Person {
         this.age = age;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public int getId() {
         return id;
@@ -79,14 +89,6 @@ public class Person {
         this.name = name;
     }
 
-//    public boolean isAdmin() {
-//        return isAdmin;
-//    }
-//
-//    public void setAdmin(boolean admin) {
-//        isAdmin = admin;
-//    }
-
 
     public String getPassword() {
         return password;
@@ -102,5 +104,29 @@ public class Person {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getCreatedPerson() {
+        return createdPerson;
+    }
+
+    public void setCreatedPerson(String createdPerson) {
+        this.createdPerson = createdPerson;
+    }
+
+    public Boolean getRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(Boolean removed) {
+        this.removed = removed;
     }
 }
